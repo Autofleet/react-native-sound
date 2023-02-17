@@ -313,6 +313,12 @@ Sound.setCategory = function(value, mixWithOthers = false) {
   }
 };
 
+Sound.releaseFocus = function() {
+  if (IsAndroid) {
+    RNSound.releaseFocus();
+  }
+};
+
 Sound.setMode = function(value) {
   if (!IsAndroid && !IsWindows) {
     RNSound.setMode(value);

@@ -173,13 +173,16 @@ RCT_EXPORT_METHOD(setCategory
     }
 
     if (category) {
-        if (mixWithOthers) {
+        if (!mixWithOthers) {
             [session setCategory:category
                      withOptions:AVAudioSessionCategoryOptionDuckOthers 
                      //| AVAudioSessionCategoryOptionAllowBluetooth
                            error:nil];
         } else {
-            [session setCategory:category error:nil];
+            [session setCategory:category
+                     withOptions:AVAudioSessionCategoryOptionMixWithOthers 
+                     //| AVAudioSessionCategoryOptionAllowBluetooth
+                           error:nil];
         }
     }
 }

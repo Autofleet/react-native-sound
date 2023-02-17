@@ -239,8 +239,6 @@ public class RNSoundModule extends ReactContextBaseJavaModule implements AudioMa
 
     // Request audio focus in Android system
     if (!this.mixWithOthers) {
-      audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-    } else {
       audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
     }
 
@@ -471,6 +469,11 @@ public class RNSoundModule extends ReactContextBaseJavaModule implements AudioMa
         }
       }
     }
+  }
+
+  @ReactMethod
+  public void releaseFocus() {
+    audioManager.abandonAudioFocus(this);
   }
 
   @ReactMethod
