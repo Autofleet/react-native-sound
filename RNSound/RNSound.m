@@ -13,6 +13,15 @@
 
 @synthesize _key = _key;
 
+- (instancetype)init {
+  self = [super init];
+  AVAudioSession *session = [AVAudioSession sharedInstance];
+  [session setCategory:AVAudioSessionCategoryPlayback
+          withOptions:AVAudioSessionCategoryOptionMixWithOthers 
+                error:nil];
+  return self;
+}
+                          
 - (void)audioSessionChangeObserver:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
     AVAudioSessionRouteChangeReason audioSessionRouteChangeReason =
